@@ -1,0 +1,14 @@
+com\example\testeo\controller\RegistroController.class
+com\example\testeo\repository\UsuarioRepository.class
+com\example\testeo\TesteoApplication.class
+com\example\testeo\controller\MainController.class
+com\example\testeo\confing\CustomAuthenticationProvider.class
+com\example\testeo\repository\TareaRepository.class
+com\example\testeo\confing\UsuarioDetailsService.class
+com\example\testeo\ServletInitializer.class
+com\example\testeo\confing\CustomAuthenticationProvider$1.class
+com\example\testeo\confing\SecurityConfig.class
+com\example\testeo\controller\LoginController.class
+com\example\testeo\controller\MenuController.class
+com\example\testeo\model\Usuario.class
+com\example\testeo\model\Tarea.class

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro de Usuario</title>
+  <!-- Agrega Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body class="container pt-5">
+
+<h2 class="text-center">Inicio de sesion</h2>
+
+<form action="/login" method="post" th:object="${usuario}" class="pt-3">
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" th:field="*{email}" class="form-control"/>
+  </div>
+
+  <div class="form-group">
+    <label for="contraseña">Contraseña:</label>
+    <input type="password" id="contraseña" name="contraseña" th:field="*{contraseña}" class="form-control"/>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Inicio de sesion</button>
+</form>
+
+<form action="/registro" method="get" class="pt-3">
+  <button type="submit" class="btn btn-secondary">Ir a registro</button>
+</form>
+
+<form action="/" method="get" class="pt-3">
+  <button type="submit" class="btn btn-secondary">Inicio</button>
+</form>
+
+<!-- Agrega Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

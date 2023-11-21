@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+        .high { color: red; }
+        .medium { color: yellow; }
+        .low { color: green; }
+        .task-table {
+    display: none;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+}
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Mi Aplicación</a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Perfil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Cerrar sesión</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="d-flex justify-content-center align-items-center" style="height: calc(100vh - 56px);">
+  <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#taskModal">Crea una nueva tarea</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="taskModal" tabindex="-1" role="dialog" aria-labelledby="taskModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="taskModalLabel">Crea una nueva tarea</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="taskForm">
+          <div class="form-group">
+            <label for="taskType">Tipo de tarea</label>
+            <select class="form-control" id="taskType">
+              <option>Accion</option>
+              <option>Estudio</option>
+              <option>Llamada</option>
+              <option>Mensaje</option>
+              <option>Deporte</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="taskDate">Fecha de tarea</label>
+            <input type="date" class="form-control" id="taskDate">
+          </div>
+          <div class="form-group">
+            <label for="taskImportance">Importancia de tarea</label>
+            <select class="form-control" id="taskImportance">
+              <option class="high">Alto</option>
+              <option class="medium">Medio</option>
+              <option class="low">Bajo</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="saveTaskButton">Guardar tarea</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Task table -->
+<div class="container task-table">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Tipo de tarea</th>
+      <th scope="col">Fecha de tarea</th>
+      <th scope="col">Importancia de tarea</th>
+      <th scope="col">Acciones</th>
+    </tr>
+    </thead>
+    <tbody id="taskTableBody">
+    </tbody>
+  </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+        $(document).ready(function() {
+            $('#saveTaskButton').click(function() {
+                var taskType = $('#taskType').val();
+                var taskDate = $('#taskDate').val();
+                var taskImportance = $('#taskImportance').val();
+
+                var row = '<tr><td>' + taskType + '</td><td>' + taskDate + '</td><td>' + taskImportance + '</td><td><button class="btn btn-danger delete-button">Eliminar</button></td></tr>';
+                $('#taskTableBody').append(row);
+
+                $('.task-table').show();
+                $('#taskModal').modal('hide');
+            });
+
+            $(document).on('click', '.delete-button', function() {
+                $(this).closest('tr').remove();
+
+                if ($('#taskTableBody').children().length == 0) {
+                    $('.task-table').hide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
